@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta ><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sergio Giraldo | Luxury Miami Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;700&family=Italiana&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+--brand:#1a6b3c;
+--brand-dark:#1a6b3c;
+--brand-gradient:linear-gradient(135deg, #1a6b3c 0%, #1a6b3c 100%);
+--bg:#F5F4F0;
+--text-base:#1a1a2e;
+--text-muted:#4b5563;
+--text-heading:#0a0a14;
+--surface-card:rgba(255,255,255,0.9);
+--surface-soft:rgba(0,0,0,0.03);
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{
+background:var(--bg);
+color:var(--text-base);
+font-family:'Inter',sans-serif;
+overflow-x:hidden;
+}
+h1,h2,h3,h4,h5,h6{color:var(--text-heading);font-family:'Montserrat',sans-serif;}
+p{color:var(--text-base);}
+li{color:var(--text-base);}
+strong{color:var(--text-heading);}
+small{color:var(--text-muted);}
+label{color:var(--text-muted);}
+a{color:inherit;}
+/* Image overlay sections: text must ALWAYS be white regardless of theme */
+.img-overlay-text h3,
+.img-overlay-text h2,
+.img-overlay-text p,
+.img-overlay-text span { color:#fff!important; }
+/* Team card name on photo must be white */
+.team-card-name { color:#fff!important; }
+.team-card-role { color:rgba(255,255,255,0.8)!important; }
+.text-gradient{background:var(--brand-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bg-brand{background:var(--brand-gradient);}
+.card{background:rgba(255,255,255,0.92);border:1px solid rgba(0,0,0,0.08);backdrop-filter:blur(12px);border-radius:16px;color:var(--text-base);}
+.card-elevated{background:rgba(255,255,255,0.97);border:1px solid rgba(0,0,0,0.08);border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);color:var(--text-base);}
+.reveal{opacity:0;transform:translateY(28px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);}
+.reveal.active{opacity:1;transform:translateY(0);}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--brand);border-radius:4px;}
+.typing-dot{width:5px;height:5px;background:var(--brand);border-radius:50%;display:inline-block;animation:bounce 1.2s infinite;}
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.nav-link{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+.nav-link:hover{color:var(--brand);}
+.section-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);display:block;margin-bottom:12px;}
+.divider{width:48px;height:2px;background:var(--brand-gradient);border-radius:2px;margin-top:16px;}
+.stat-card{background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.07);border-radius:12px;padding:20px 24px;}
+.stat-card .stat-num{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700;color:var(--text-heading);}
+.stat-card .stat-unit{color:var(--brand);}
+.stat-card .stat-label{
+font-family:'Montserrat',sans-serif;
+font-size:9px;
+letter-spacing:.12em;
+text-transform:uppercase;
+color:var(--text-muted);
+margin-top:4px;
+}
+
+.stat-card p,
+.stat-card span,
+.stat-card small,
+.stat-card div {
+color: var(--text-base);
+}
+.stat-card .stat-num {
+color: var(--text-heading) !important;
+}
+.stat-card .stat-label {
+color: var(--text-muted) !important;
+}
+.feature-icon{width:44px;height:44px;border-radius:12px;background:rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.property-card{background:#ffffff;border:1px solid rgba(0,0,0,0.07);border-radius:16px;overflow:hidden;transition:transform .4s,box-shadow .4s;}
+.property-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.12);}
+.mobile-menu-btn{display:none;width:44px;height:44px;border:none;border-radius:12px;background:var(--brand-gradient);color:#fff;align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0;}
+.mobile-nav{display:none!important;position:absolute;top:100%;left:0;width:100%;padding-top:12px;z-index:9999;}
+.mobile-nav.show{display:block!important;animation:mobileIn .25s ease;}
+.mobile-nav-inner{background:#fff;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:16px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:0 12px;}
+.mobile-nav-inner a{text-decoration:none;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--text-heading);letter-spacing:.05em;padding:4px 0;border-bottom:1px solid rgba(0,0,0,0.06);}
+.mobile-nav-inner a:last-child{border-bottom:none;}
+@keyframes mobileIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* =====================================================
+   PRIME MARKETS — Mobile Optimized Neighborhood Grid
+   ===================================================== */
+.neighborhoods-grid{
+  display:grid;
+  grid-template-columns:7fr 5fr;
+  grid-template-rows:240px 240px;
+  gap:20px;
+}
+.neighborhood-main{grid-row:span 2;}
+
+/* =====================================================
+   FEATURED LISTINGS — Mobile Filter + Property Grid
+   ===================================================== */
+.props-filter-wrap{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.props-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+/* =====================================================
+   OUR TEAM — Mobile Team Grid
+   ===================================================== */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+/* =====================================================
+   SEARCH BAR — Fully Device Optimized
+   ===================================================== */
+.search-bar-wrap{max-width:820px;margin:0 auto 32px;}
+.search-tabs{display:flex;gap:4px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;}
+.search-tab{
+  padding:8px 24px;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.08);
+  color:#fff;font-family:'Montserrat',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:.08em;
+  cursor:pointer;backdrop-filter:blur(8px);
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.search-tab::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent);
+  transform:skewX(-20deg);transition:left .4s ease;pointer-events:none;
+}
+.search-tab:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.15);box-shadow:0 4px 16px rgba(0,0,0,0.25);}
+.search-tab:hover::before{left:160%;}
+.search-tab.active{background:var(--brand-gradient);border-color:var(--brand);box-shadow:0 4px 20px rgba(0,0,0,0.25);}
+.search-tab:active{transform:translateY(0);}
+
+.search-box{
+  display:flex;align-items:stretch;
+  background:rgba(255,255,255,0.97);
+  border-radius:20px;
+  padding:8px;
+  box-shadow:0 24px 64px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.18),inset 0 1px 0 rgba(255,255,255,0.95);
+  gap:0;
+  transition:box-shadow .3s,transform .3s;
+  backdrop-filter:blur(20px);
+}
+.search-box:focus-within{box-shadow:0 28px 72px rgba(0,0,0,0.45),0 0 0 2px rgba(4,184,54,0.35),inset 0 1px 0 rgba(255,255,255,0.95);transform:translateY(-1px);}
+.search-field{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 20px;flex:1;min-width:0;
+  border-right:1px solid rgba(0,0,0,0.08);
+  position:relative;
+  transition:background .2s;
+  border-radius:0;
+}
+.search-field:first-child{border-radius:12px 0 0 12px;}
+.search-field:hover{background:rgba(0,0,0,0.018);}
+.search-field:last-of-type{border-right:none;}
+.search-field-icon{color:var(--brand);font-size:16px;flex-shrink:0;}
+.search-field-inner{display:flex;flex-direction:column;min-width:0;flex:1;}
+.search-field-label{
+  font-family:'Montserrat',sans-serif;font-size:9px;
+  font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#aaa;margin-bottom:3px;white-space:nowrap;
+}
+.search-field input,.search-field select{
+  border:none;outline:none;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
+  color:#111;background:transparent;
+  width:100%;cursor:pointer;
+}
+.search-btn{
+  flex-shrink:0;padding:0 28px;
+  border-radius:14px;background:var(--brand-gradient);
+  border:none;color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;font-weight:800;letter-spacing:.1em;
+  cursor:pointer;display:flex;align-items:center;
+  gap:8px;white-space:nowrap;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 4px 16px rgba(0,0,0,0.2);
+  position:relative;overflow:hidden;min-height:48px;
+}
+.search-btn::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);
+  transform:skewX(-20deg);transition:left .45s ease;pointer-events:none;
+}
+.search-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 28px rgba(0,0,0,0.3);}
+.search-btn:hover::before{left:160%;}
+.search-btn:active{transform:translateY(0) scale(0.98);}
+
+.search-quick-tags{
+  display:flex;gap:8px;justify-content:center;
+  margin-top:14px;flex-wrap:wrap;
+}
+.search-quick-tag{
+  padding:6px 14px;border-radius:999px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.85);
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;font-weight:600;cursor:pointer;
+  backdrop-filter:blur(8px);
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);
+}
+.search-quick-tag:hover{
+  background:rgba(255,255,255,0.22);
+  border-color:rgba(255,255,255,0.5);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.search-quick-tag:active{transform:translateY(0);}
+.search-quick-tag.selected{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.6);}
+
+/* ── TABLET Search (≤1024px) ── */
+@media(max-width:1024px){
+  .search-box{flex-wrap:wrap;border-radius:16px;padding:12px;}
+  .search-field{flex:1 1 40%;border-right:none;border-bottom:1px solid rgba(0,0,0,0.08);padding:8px 12px;}
+  .search-field:nth-child(2){border-right:1px solid rgba(0,0,0,0.08);}
+  .search-field:last-of-type{border-bottom:none;}
+  .search-btn{width:100%;margin-top:8px;justify-content:center;border-radius:10px;padding:14px;}
+}
+
+/* ── MOBILE Search (≤768px) ── */
+@media(max-width:768px){
+  .search-bar-wrap{
+    margin:0 auto 22px;
+    padding:0 12px;
+    max-width:100%;
+  }
+  .search-tabs{
+    gap:8px;
+    margin-bottom:12px;
+    justify-content:center;
+  }
+  .search-tab{
+    padding:7px 16px;
+    font-size:10px;
+    min-width:72px;
+  }
+  .search-box{
+    flex-direction:column;
+    border-radius:22px;
+    padding:8px;
+    gap:0;
+    width:100%;
+    background:#ffffff;
+    box-shadow:0 14px 35px rgba(0,0,0,0.22);
+    overflow:hidden;
+  }
+  .search-field{
+    width:100%;
+    border:none;
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    padding:12px 14px;
+    min-height:74px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .search-field:last-of-type{
+    border-bottom:none;
+  }
+  .search-field-icon{
+    font-size:15px;
+    min-width:18px;
+  }
+  .search-field-label{
+    font-size:10px;
+    margin-bottom:4px;
+    letter-spacing:.08em;
+  }
+  .search-field input,
+  .search-field select{
+    font-size:16px;
+    line-height:1.3;
+    padding:0;
+  }
+  .search-btn{
+    width:100%;
+    margin-top:10px;
+    border-radius:16px;
+    padding:15px 18px;
+    font-size:15px;
+    font-weight:700;
+    justify-content:center;
+  }
+  .search-quick-tags{
+    gap:8px;
+    margin-top:12px;
+  }
+  .search-quick-tag{
+    font-size:10px;
+    padding:7px 12px;
+  }
+}
+
+/* ── XS Search (≤480px) ── */
+@media(max-width:480px){
+  .search-tab{padding:6px 14px;font-size:9px;}
+  .search-quick-tags{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .search-quick-tag{text-align:center;}
+}
+
+/* ── PREMIUM BUTTON ANIMATIONS (generated website) ── */
+.btn-primary-anim{
+  position:relative;overflow:hidden;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1)!important;
+}
+.btn-primary-anim::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent);
+  transform:skewX(-20deg);transition:left .45s ease;pointer-events:none;
+}
+.btn-primary-anim:hover{transform:translateY(-2px)!important;box-shadow:0 10px 30px rgba(0,0,0,0.25)!important;}
+.btn-primary-anim:hover::before{left:160%;}
+.btn-primary-anim:active{transform:translateY(0)!important;}
+.why-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:24px!important;}
+.footer-grid{display:grid!important;grid-template-columns:2fr 1fr 1fr 2fr!important;gap:40px!important;}
+
+/* =====================================================
+   TABLET BREAKPOINT (≤1024px)
+   ===================================================== */
+@media(max-width:1024px){
+  .desktop-nav,.desktop-call{display:none!important;}
+  .mobile-menu-btn{display:flex!important;}
+  #about>div{grid-template-columns:1fr!important;}
+  .why-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .footer-grid{grid-template-columns:1fr 1fr!important;gap:28px!important;}
+
+  /* Neighborhoods: 2-col stacked on tablet */
+  .neighborhoods-grid{
+    grid-template-columns:1fr 1fr!important;
+    grid-template-rows:200px 200px!important;
+    gap:16px!important;
+  }
+  .neighborhood-main{grid-row:span 1!important;}
+
+  /* Props: 2-col on tablet */
+  .props-grid{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
+
+  /* Team: 2-col on tablet */
+  .team-grid{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
+}
+
+/* =====================================================
+   MOBILE BREAKPOINT (≤768px) — FULL MOBILE OPTIMIZE
+   ===================================================== */
+@media(max-width:768px){
+  section{padding:56px 16px!important;}
+  h1{font-size:clamp(1.9rem,9vw,2.6rem)!important;}
+  h2{font-size:clamp(1.5rem,7vw,2rem)!important;}
+
+  /* ── Prime Markets: full single column ── */
+  .neighborhoods-grid{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:14px!important;
+  }
+  .neighborhood-main{
+    height:260px!important;
+  }
+  .neighborhood-item{
+    height:180px!important;
+  }
+
+  /* ── Featured Listings ── */
+  /* Filter buttons: horizontal scroll */
+  .props-filter-wrap{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    gap:8px!important;
+    padding-bottom:6px!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+  }
+  .props-filter-wrap::-webkit-scrollbar{display:none!important;}
+  .props-filter-wrap button{
+    flex-shrink:0!important;
+    white-space:nowrap!important;
+  }
+  /* Properties: single column */
+  .props-grid{
+    grid-template-columns:1fr!important;
+    gap:20px!important;
+  }
+  /* Property card image taller on mobile */
+  .property-card-img{
+    aspect-ratio:16/9!important;
+  }
+
+  /* ── Our Team: single column ── */
+  .team-grid{
+    grid-template-columns:1fr!important;
+    gap:24px!important;
+  }
+  /* Team card image: landscape crop on mobile */
+  .team-card-img{
+    aspect-ratio:4/3!important;
+    height:auto!important;
+  }
+
+  /* Other existing fixes */
+  .why-grid{grid-template-columns:1fr!important;}
+  .footer-grid{grid-template-columns:1fr!important;gap:24px!important;}
+  #contact>div{grid-template-columns:1fr!important;}
+  .stat-grid{grid-template-columns:1fr!important;}
+
+  /* Search bar mobile */
+  .search-bar-inner{flex-direction:column!important;border-radius:14px!important;padding:16px!important;gap:12px!important;}
+  .search-divider{border-right:none!important;border-bottom:1px solid rgba(0,0,0,0.1)!important;padding-right:0!important;padding-bottom:12px!important;}
+
+  /* ── Hero: prevent content hiding behind fixed header ── */
+  #hero{min-height:100svh!important;align-items:flex-start!important;}
+  #hero>div:last-child{padding-top:clamp(80px,20vw,120px)!important;padding-bottom:48px!important;}
+}
+
+/* =====================================================
+   EXTRA SMALL (≤480px)
+   ===================================================== */
+@media(max-width:480px){
+  .neighborhood-main{height:220px!important;}
+  .neighborhood-item{height:160px!important;}
+  .stat-card{padding:16px!important;}
+  .stat-card .stat-num{font-size:22px!important;}
+}
+</style>
+</head>
+<body>
+<header style="position:fixed;top:0;left:0;width:100%;z-index:50;padding:16px 0;" id="main-header">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <div class="header-wrap" style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.08);backdrop-filter:blur(20px);border-radius:999px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-heading);">Sergio <span style="color:var(--brand);">Giraldo</span></span></div>
+      <nav class="desktop-nav" style="display:flex;gap:24px;"><a href="#about" class="nav-link">About</a><a href="#neighborhoods" class="nav-link">Neighborhoods</a><a href="#properties" class="nav-link">Properties</a><a href="#team" class="nav-link">Team</a><a href="#contact" class="nav-link">Contact</a></nav>
+      <a class="desktop-call" href="tel:1234567890" style="display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--brand);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--brand);text-decoration:none;transition:all .2s;" onmouseover="this.style.background='var(--brand)';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='var(--brand)';"><i class="fa-solid fa-phone" style="font-size:10px;"></i>123-456-7890</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+      <div class="mobile-nav" id="mobileNav"><div class="mobile-nav-inner"><a href="#about" onclick="toggleMobileMenu()"><i class="fa-solid fa-user" style="margin-right:10px;color:var(--brand);font-size:12px;"></i>About</a><a href="#neighborhoods" onclick="toggleMobileMenu()"><i class="fa-solid fa-map-location-dot" style="margin-right:10px;color:var(--brand);font-size:12px;"></i>Neighborhoods</a><a href="#properties" onclick="toggleMobileMenu()"><i class="fa-solid fa-building" style="margin-right:10px;color:var(--brand);font-size:12px;"></i>Properties</a><a href="#team" onclick="toggleMobileMenu()"><i class="fa-solid fa-people-group" style="margin-right:10px;color:var(--brand);font-size:12px;"></i>Team</a><a href="#contact" onclick="toggleMobileMenu()"><i class="fa-solid fa-envelope" style="margin-right:10px;color:var(--brand);font-size:12px;"></i>Contact</a><a href="tel:1234567890" style="background:var(--brand-gradient);color:#fff!important;padding:10px 16px;border-radius:10px;text-align:center;"><i class="fa-solid fa-phone" style="margin-right:8px;font-size:12px;"></i>123-456-7890</a></div></div>
+    </div>
+  </div>
+</header>
+
+<section style="position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000;" id="hero">
+  <div style="position:absolute;inset:0;z-index:0;overflow:hidden;opacity:0.45;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;transform:scale(1.1);" src="https://www.youtube.com/embed/iJb8P2fD15E?autoplay=1&mute=1&controls=0&loop=1&playlist=iJb8P2fD15E&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" allow="autoplay;encrypted-media" frameborder="0"></iframe></div>
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to top,#0a0a0b 0%,rgba(0,0,0,0.55) 50%,rgba(0,0,0,0.2) 100%);"></div>
+  <div style="position:relative;z-index:2;text-align:center;padding:100px 24px 40px;max-width:900px;margin:0 auto;width:100%;">
+    <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brand);display:block;margin-bottom:20px;">Exclusive Estate Gateway</span>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);color:#ffffff;line-height:1.1;margin-bottom:20px;"><em style="background:var(--brand-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Sergio Giraldo</em></h1>
+    <p style="font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.75);max-width:560px;margin:0 auto 40px;font-weight:300;line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+    <!-- SEARCH BAR — Device Optimized -->
+    <div class="search-bar-wrap">
+      <!-- Tabs -->
+      <div class="search-tabs">
+        <button onclick="setSearchTab(this,'Buy')" class="search-tab active">Buy</button><button onclick="setSearchTab(this,'Rent')" class="search-tab">Rent</button><button onclick="setSearchTab(this,'Sell')" class="search-tab">Sell</button>
+      </div>
+      <!-- Search box -->
+      <div class="search-box">
+        <!-- Location -->
+        <div class="search-field">
+          <i class="fa-solid fa-location-dot search-field-icon"></i>
+          <div class="search-field-inner">
+            <p class="search-field-label">Location</p>
+            <input type="text" placeholder="Miami City, Neighborhood…">
+          </div>
+        </div>
+        <!-- Type -->
+        <div class="search-field">
+          <i class="fa-solid fa-building search-field-icon"></i>
+          <div class="search-field-inner">
+            <p class="search-field-label">Type</p>
+            <select>
+              <option>Any Type</option>
+              <option>House</option>
+              <option>Apartment</option>
+              <option>Villa</option>
+              <option>Commercial</option>
+              <option>Land</option>
+            </select>
+          </div>
+        </div>
+        <!-- Price -->
+        <div class="search-field">
+          <i class="fa-solid fa-tag search-field-icon"></i>
+          <div class="search-field-inner">
+            <p class="search-field-label">Price Range</p>
+            <select>
+              <option>Any Price</option>
+              <option>Under $200K</option>
+              <option>$200K – $500K</option>
+              <option>$500K – $1M</option>
+              <option>$1M – $2M</option>
+              <option>$2M+</option>
+            </select>
+          </div>
+        </div>
+        <!-- Search Button -->
+        <button onclick="alert('Search feature coming soon!')" class="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </div>
+
+    </div>
+
+    <script>
+    function setSearchTab(btn, tab) {
+      document.querySelectorAll('.search-tab').forEach(b => {
+        b.style.background = 'rgba(255,255,255,0.08)';
+        b.style.borderColor = 'rgba(255,255,255,0.2)';
+      });
+      btn.style.background = 'var(--brand-gradient)';
+      btn.style.borderColor = 'var(--brand)';
+    }
+    </script>
+  </div>
+
+</section>
+
+<section id="about" style="padding:100px 24px;background:#ffffff;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="reveal"><span class="section-label">Our Story</span><h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.2;margin-bottom:20px;">Defining Miami Luxury Since Day One</h2><p style="font-size:15px;line-height:1.8;color:var(--text-muted);margin-bottom:16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p style="font-size:15px;line-height:1.8;color:var(--text-muted);margin-bottom:36px;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p><div class="stat-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="stat-card"><div class="stat-num"><span data-target="2.4">0</span><span class="stat-unit">B+</span></div><div class="stat-label">Portfolio Volume</div></div><div class="stat-card"><div class="stat-num"><span data-target="150">0</span><span class="stat-unit">+</span></div><div class="stat-label">Exclusive Listings</div></div><div class="stat-card"><div class="stat-num"><span data-target="99">0</span><span class="stat-unit">%</span></div><div class="stat-label">Client Retention</div></div></div></div>
+    <div class="reveal" style="transition-delay:.2s;"><div style="border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.12);position:relative;"><img decoding="async" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop" alt="Luxury Estate" style="width:100%;height:480px;object-fit:cover;display:block;"><div style="position:absolute;bottom:24px;left:24px;right:24px;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-radius:12px;padding:16px 20px;border:1px solid rgba(0,0,0,0.08);"><p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:4px;">Currently Available</p><p style="font-size:14px;font-weight:600;color:var(--text-heading);">Premium estates in Miami</p></div></div></div>
+  </div>
+</section>
+
+<!-- ══════════ PRIME MARKETS — NEIGHBORHOODS ══════════ -->
+<section id="neighborhoods" style="padding:100px 24px;background:var(--bg);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;"><span class="section-label" style="text-align:center;">Prime Markets</span><h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);">Miami's Most Exclusive Neighborhoods</h2><div class="divider" style="margin:16px auto 0;"></div></div>
+    <div class="neighborhoods-grid">
+      <div class="reveal neighborhood-main" style="border-radius:20px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.1);"><img decoding="async" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=450&fit=crop" alt="Neighborhood 1" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 60%);"></div><div style="position:absolute;bottom:24px;left:24px;right:24px;"><span style="display:inline-block;background:var(--brand-gradient);color:#fff;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:8px;">Premier Zone</span><h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:6px;">Sharyland Elite District</h3><p style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;">Private acreage estates with gated security and striking design.</p></div></div>
+      <div class="reveal neighborhood-item" style="border-radius:20px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.1);transition-delay:.15s;"><img decoding="async" src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&h=450&fit=crop" alt="Neighborhood 2" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%);"></div><div style="position:absolute;bottom:20px;left:20px;right:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:4px;">Bentsen Reserve Estates</h3><p style="font-size:12px;color:rgba(255,255,255,0.7);">Luxury living with resort-style amenities.</p></div></div>
+      <div class="reveal neighborhood-item" style="border-radius:20px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.1);transition-delay:.3s;"><img decoding="async" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=450&fit=crop" alt="Neighborhood 3" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%);"></div><div style="position:absolute;bottom:20px;left:20px;right:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:4px;">Tres Lagos Sanctuaries</h3><p style="font-size:12px;color:rgba(255,255,255,0.7);">Lakefront smart homes redefining modern living.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FEATURED LISTINGS ══════════ -->
+<section id="properties" style="padding:100px 24px;background:#ffffff;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px;">
+      <div><span class="section-label">Featured Listings</span><h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);">Signature Properties</h2></div>
+      <div class="props-filter-wrap"><button onclick="filterProps(this,'all')" style="padding:8px 18px;border-radius:999px;border:1.5px solid var(--brand);background:var(--brand-gradient);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;" data-filter="all">All</button><button onclick="filterProps(this,'estates')" style="padding:8px 18px;border-radius:999px;border:1.5px solid rgba(0,0,0,0.08);background:transparent;color:var(--text-muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;" data-filter="estates">Estates</button><button onclick="filterProps(this,'mansions')" style="padding:8px 18px;border-radius:999px;border:1.5px solid rgba(0,0,0,0.08);background:transparent;color:var(--text-muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;" data-filter="mansions">Mansions</button><button onclick="filterProps(this,'villas')" style="padding:8px 18px;border-radius:999px;border:1.5px solid rgba(0,0,0,0.08);background:transparent;color:var(--text-muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;" data-filter="villas">Villas</button></div>
+    </div>
+    <div class="props-grid" id="props-grid"><div class="property-card reveal" data-cat="estate" style="transition-delay:0s;"><div class="property-card-img" style="position:relative;overflow:hidden;aspect-ratio:4/3;"><span style="position:absolute;top:14px;left:14px;z-index:2;background:var(--brand-gradient);color:#fff;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:6px;">For Sale</span><img decoding="async" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=450&fit=crop" alt="The Luminary Estate" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div><div style="padding:22px 24px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:var(--brand);letter-spacing:.05em;"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>Sharyland Enclaves</span><span style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text-heading);">$3,850,000</span></div><h3 style="font-family:'Playfair Display',serif;font-size:19px;margin-bottom:16px;">The Luminary Estate</h3><div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(0,0,0,0.08);"><div style="display:flex;gap:12px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.05em;flex-wrap:wrap;"><span><i class="fa-solid fa-bed" style="color:var(--brand);margin-right:4px;"></i>5 Beds</span><span><i class="fa-solid fa-bath" style="color:var(--brand);margin-right:4px;"></i>5 Baths</span><span><i class="fa-solid fa-ruler-combined" style="color:var(--brand);margin-right:4px;"></i>6,000 sqft</span></div><button style="background:var(--brand-gradient);color:#fff;border:none;padding:7px 14px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;flex-shrink:0;">Details</button></div></div></div><div class="property-card reveal" data-cat="mansion" style="transition-delay:0.15s;"><div class="property-card-img" style="position:relative;overflow:hidden;aspect-ratio:4/3;"><span style="position:absolute;top:14px;left:14px;z-index:2;background:var(--brand-gradient);color:#fff;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:6px;">New Listing</span><img decoding="async" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=450&fit=crop" alt="The Obsidian Mansion" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div><div style="padding:22px 24px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:var(--brand);letter-spacing:.05em;"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>Tres Lagos</span><span style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text-heading);">$5,200,000</span></div><h3 style="font-family:'Playfair Display',serif;font-size:19px;margin-bottom:16px;">The Obsidian Mansion</h3><div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(0,0,0,0.08);"><div style="display:flex;gap:12px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.05em;flex-wrap:wrap;"><span><i class="fa-solid fa-bed" style="color:var(--brand);margin-right:4px;"></i>6 Beds</span><span><i class="fa-solid fa-bath" style="color:var(--brand);margin-right:4px;"></i>6 Baths</span><span><i class="fa-solid fa-ruler-combined" style="color:var(--brand);margin-right:4px;"></i>6,500 sqft</span></div><button style="background:var(--brand-gradient);color:#fff;border:none;padding:7px 14px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;flex-shrink:0;">Details</button></div></div></div><div class="property-card reveal" data-cat="villa" style="transition-delay:0.3s;"><div class="property-card-img" style="position:relative;overflow:hidden;aspect-ratio:4/3;"><span style="position:absolute;top:14px;left:14px;z-index:2;background:var(--brand-gradient);color:#fff;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:6px;">Private Listing</span><img decoding="async" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop" alt="The Sanctuary Villa" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div><div style="padding:22px 24px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:var(--brand);letter-spacing:.05em;"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>Bentsen Reserve</span><span style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text-heading);">$2,950,000</span></div><h3 style="font-family:'Playfair Display',serif;font-size:19px;margin-bottom:16px;">The Sanctuary Villa</h3><div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(0,0,0,0.08);"><div style="display:flex;gap:12px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.05em;flex-wrap:wrap;"><span><i class="fa-solid fa-bed" style="color:var(--brand);margin-right:4px;"></i>7 Beds</span><span><i class="fa-solid fa-bath" style="color:var(--brand);margin-right:4px;"></i>7 Baths</span><span><i class="fa-solid fa-ruler-combined" style="color:var(--brand);margin-right:4px;"></i>7,000 sqft</span></div><button style="background:var(--brand-gradient);color:#fff;border:none;padding:7px 14px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;flex-shrink:0;">Details</button></div></div></div></div>
+  </div>
+</section>
+
+<section style="padding:100px 24px;background:var(--bg);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;"><span class="section-label" style="text-align:center;">Why Choose Us</span><h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);">The Giraldo Difference</h2><div class="divider" style="margin:16px auto 0;"></div></div>
+    <div class="why-grid"><div class="card-elevated reveal" style="padding:28px;transition-delay:0s;"><div class="feature-icon"><i class="fa-solid fa-lock" style="color:var(--brand);font-size:16px;"></i></div><h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:10px;">Complete Privacy</h3><p style="font-size:13px;line-height:1.7;color:var(--text-muted);">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p></div><div class="card-elevated reveal" style="padding:28px;transition-delay:0.1s;"><div class="feature-icon"><i class="fa-solid fa-chart-line" style="color:var(--brand);font-size:16px;"></i></div><h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:10px;">Data-Driven Pricing</h3><p style="font-size:13px;line-height:1.7;color:var(--text-muted);">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p></div><div class="card-elevated reveal" style="padding:28px;transition-delay:0.2s;"><div class="feature-icon"><i class="fa-solid fa-key" style="color:var(--brand);font-size:16px;"></i></div><h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:10px;">Off-Market Access</h3><p style="font-size:13px;line-height:1.7;color:var(--text-muted);">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div><div class="card-elevated reveal" style="padding:28px;transition-delay:0.30000000000000004s;"><div class="feature-icon"><i class="fa-solid fa-star" style="color:var(--brand);font-size:16px;"></i></div><h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:10px;">Full-Service Concierge</h3><p style="font-size:13px;line-height:1.7;color:var(--text-muted);">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id.</p></div></div>
+  </div>
+</section>
+
+<!-- ══════════ OUR TEAM ══════════ -->
+<section id="team" style="padding:100px 24px;background:#ffffff;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;"><span class="section-label" style="text-align:center;">Our Team</span><h2 style="font-size:clamp(2rem,3.5vw,2.8rem);">Meet the Experts</h2><div class="divider" style="margin:16px auto 0;"></div></div>
+    <div class="team-grid"><div class="card-elevated reveal" style="overflow:hidden;transition-delay:0s;"><div class="team-card-img" style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img decoding="async" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Sergio Giraldo" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none';" onmouseout="this.style.transform='scale(1)';this.style.filter='grayscale(10%)'"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 55%);"></div><div style="position:absolute;bottom:20px;left:20px;right:20px;"><h3 style="font-size:18px;color:#fff;margin-bottom:4px;">Sergio Giraldo</h3><p style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);">Principal Broker</p></div></div><div style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><span style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#003087;padding:4px 10px;border-radius:20px;border:1.5px solid #00308722;background:#00308711;"><i class="fa-solid fa-building-columns" style="font-size:8px;margin-right:4px;"></i>Coldwell Banker</span><div style="display:flex;gap:12px;"><a href="#" target="_blank" style="color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" style="color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-facebook-f"></i></a></div></div></div><div class="card-elevated reveal" style="overflow:hidden;transition-delay:0.15s;"><div class="team-card-img" style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img decoding="async" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="VP of Acquisitions" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none';" onmouseout="this.style.transform='scale(1)';this.style.filter='grayscale(10%)'"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 55%);"></div><div style="position:absolute;bottom:20px;left:20px;right:20px;"><h3 style="font-size:18px;color:#fff;margin-bottom:4px;">VP of Acquisitions</h3><p style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);">Licensed Advisor</p></div></div><div style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><span style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#003087;padding:4px 10px;border-radius:20px;border:1.5px solid #00308722;background:#00308711;"><i class="fa-solid fa-building-columns" style="font-size:8px;margin-right:4px;"></i>Coldwell Banker</span><div style="display:flex;gap:12px;"><a href="#" target="_blank" style="color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" style="color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-facebook-f"></i></a></div></div></div><div class="card-elevated reveal" style="overflow:hidden;transition-delay:0.3s;"><div class="team-card-img" style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img decoding="async" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Director of Assets" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none';" onmouseout="this.style.transform='scale(1)';this.style.filter='grayscale(10%)'"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 55%);"></div><div style="position:absolute;bottom:20px;left:20px;right:20px;"><h3 style="font-size:18px;color:#fff;margin-bottom:4px;">Director of Assets</h3><p style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);">Senior Agent</p></div></div><div style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><span style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#003087;padding:4px 10px;border-radius:20px;border:1.5px solid #00308722;background:#00308711;"><i class="fa-solid fa-building-columns" style="font-size:8px;margin-right:4px;"></i>Coldwell Banker</span><div style="display:flex;gap:12px;"><a href="#" target="_blank" style="color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" style="color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-facebook-f"></i></a></div></div></div></div>
+  </div>
+</section>
+
+<section style="padding:100px 24px;background:var(--bg);">
+  <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div class="reveal"><span class="section-label" style="text-align:center;">Client Stories</span><div style="font-size:48px;color:var(--brand);opacity:0.2;margin-bottom:20px;"><i class="fa-solid fa-quote-right"></i></div></div>
+    <div style="position:relative;min-height:200px;">
+      <div class="testimonial-slide reveal" style="padding:0 20px;"><p style="font-family:'Playfair Display',serif;font-size:clamp(1rem,2.2vw,1.3rem);line-height:1.7;color:var(--text-heading);font-style:italic;margin-bottom:32px;">"Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud."</p><div style="display:flex;align-items:center;justify-content:center;gap:14px;"><div style="width:44px;height:44px;border-radius:50%;background:var(--brand-gradient);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:#fff;">HR</div><div style="text-align:left;"><p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-heading);">Harrison Reynolds</p><p style="font-size:12px;color:var(--text-muted);">Managing Director, Reynolds Capital Group</p></div></div></div>
+      <div class="testimonial-slide" style="display:none;padding:0 20px;"><p style="font-family:'Playfair Display',serif;font-size:clamp(1rem,2.2vw,1.3rem);line-height:1.7;color:var(--text-heading);font-style:italic;margin-bottom:32px;">"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident."</p><div style="display:flex;align-items:center;justify-content:center;gap:14px;"><div style="width:44px;height:44px;border-radius:50%;background:var(--brand-gradient);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:#fff;">AC</div><div style="text-align:left;"><p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-heading);">Dr. Alessandra Cavazos</p><p style="font-size:12px;color:var(--text-muted);">Chief Neurosurgeon, South Texas Health System</p></div></div></div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:32px;"><button onclick="prevSlide()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.08);background:transparent;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.08)';this.style.color='var(--text-muted)'"><i class="fa-solid fa-chevron-left" style="font-size:10px;"></i></button><span id="t-dot-0" style="width:24px;height:4px;border-radius:2px;background:var(--brand);cursor:pointer;" onclick="goSlide(0)"></span><span id="t-dot-1" style="width:8px;height:4px;border-radius:2px;background:rgba(0,0,0,0.08);cursor:pointer;" onclick="goSlide(1)"></span><button onclick="nextSlide()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.08);background:transparent;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.08)';this.style.color='var(--text-muted)'"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></button></div>
+  </div>
+</section>
+
+<section id="contact" style="padding:100px 24px;background:#ffffff;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+    <div class="card-elevated reveal" style="padding:40px;"><span class="section-label">Get in Touch</span><h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:8px;">Start a Private Consultation</h2><p style="font-size:14px;color:var(--text-muted);margin-bottom:28px;line-height:1.6;">Fill out the form and one of our advisors will reach out within two hours.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;"><div><label style="display:block;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:6px;">Full Name</label><input type="text" placeholder="Jane Smith" style="width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid #d1d5db;background:#ffffff;color:var(--text-heading);font-family:'Inter',sans-serif;font-size:13px;outline:none;"></div><div><label style="display:block;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:6px;">Phone</label><input type="tel" placeholder="123-456-7890" style="width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid #d1d5db;background:#ffffff;color:var(--text-heading);font-family:'Inter',sans-serif;font-size:13px;outline:none;"></div></div><div style="margin-bottom:16px;"><label style="display:block;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:6px;">Email</label><input type="email" placeholder="info@youremail.com" style="width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid #d1d5db;background:#ffffff;color:var(--text-heading);font-family:'Inter',sans-serif;font-size:13px;outline:none;"></div><div style="margin-bottom:24px;"><label style="display:block;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:6px;">How can we help?</label><textarea rows="4" placeholder="Tell us about what you're looking for..." style="width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid #d1d5db;background:#ffffff;color:var(--text-heading);font-family:'Inter',sans-serif;font-size:13px;outline:none;resize:none;"></textarea></div><button onclick="alert('Message sent! Our team will be in touch shortly.')" style="width:100%;padding:14px;background:var(--brand-gradient);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,0.15);"><i class="fa-solid fa-paper-plane"></i> Send Message</button></div>
+    <div class="reveal" style="transition-delay:.2s;"><span class="section-label">Visit Us</span><h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:12px;">Our Office</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;">Come see us at our headquarters.</p><div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.1);margin-bottom:24px;border:1px solid rgba(0,0,0,0.08);"><iframe src="https://maps.google.com/maps?q=328%20Crandon%20Blvd%20Ste%20127%20%20Key%20Biscayne%2C%20FL%2033149&output=embed" style="width:100%;height:300px;border:none;display:block;" allowfullscreen loading="lazy"></iframe></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"><div class="card-elevated" style="padding:16px 18px;display:flex;gap:12px;align-items:flex-start;"><i class="fa-solid fa-building-user" style="color:var(--brand);font-size:14px;margin-top:2px;flex-shrink:0;"></i><div><p style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:4px;">Address</p><p style="font-size:12px;color:var(--text-muted);line-height:1.5;">Your Address Here</p></div></div><div class="card-elevated" style="padding:16px 18px;display:flex;gap:12px;align-items:flex-start;"><i class="fa-solid fa-envelope" style="color:var(--brand);font-size:14px;margin-top:2px;flex-shrink:0;"></i><div><p style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:4px;">Email</p><a href="mailto:info@youremail.com" style="font-size:12px;color:var(--text-muted);text-decoration:none;word-break:break-all;">info@youremail.com</a></div></div></div></div>
+  </div>
+</section>
+
+<footer style="background:#F5F4F0;border-top:1px solid rgba(0,0,0,0.08);padding:60px 24px 32px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="footer-grid" style="margin-bottom:48px;">
+      <div><p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-heading);margin-bottom:12px;">Sergio <span style="color:var(--brand);">Giraldo</span></p><p style="font-size:13px;color:var(--text-muted);line-height:1.6;max-width:240px;">Licensed real estate brokerage serving Miami and surrounding areas. Equal Housing Opportunity.</p><div style="margin-top:16px;padding:10px 14px;border-radius:10px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);display:inline-flex;align-items:center;gap:10px;"><img decoding="async" src="https://webhulks.agency/wp-content/uploads/2026/05/CB-Black-e1779113551892.png" alt="Coldwell Banker" style="height:66px;width:auto;object-fit:contain;"></div><p style="font-size:10px;color:var(--text-muted);line-height:1.5;margin-top:10px;max-width:260px;">An independently owned and operated franchisee of Coldwell Banker Real Estate LLC. Equal Housing Opportunity.</p>
+      </div>
+      <div><p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:16px;">Navigate</p><ul style="list-style:none;display:flex;flex-direction:column;gap:10px;"><li><a href="#about" style="font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'">About</a></li><li><a href="#neighborhoods" style="font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'">Neighborhoods</a></li><li><a href="#properties" style="font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'">Properties</a></li><li><a href="#team" style="font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'">Team</a></li><li><a href="#contact" style="font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'">Contact</a></li></ul></div>
+      <div><p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:16px;">Legal</p><ul style="list-style:none;display:flex;flex-direction:column;gap:10px;"><li><a href="#" style="font-size:13px;color:var(--text-muted);text-decoration:none;">Privacy Policy</a></li><li><a href="#" style="font-size:13px;color:var(--text-muted);text-decoration:none;">License Info</a></li><li><a href="#" style="font-size:13px;color:var(--text-muted);text-decoration:none;">Disclosures</a></li></ul></div>
+      <div><p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:12px;">Stay Informed</p><p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;line-height:1.5;">Subscribe for off-market listings before they hit the public market.</p><div style="display:flex;gap:8px;"><input type="email" placeholder="your@email.com" style="flex:1;padding:10px 14px;border-radius:8px;border:1.5px solid #d1d5db;background:#ffffff;color:var(--text-heading);font-family:'Inter',sans-serif;font-size:12px;outline:none;"><button onclick="alert('Subscribed!')" style="padding:10px 16px;background:var(--brand-gradient);color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;cursor:pointer;white-space:nowrap;">Subscribe</button></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;"><p style="font-size:12px;color:var(--text-muted);">© 2026 Sergio Giraldo. All Rights Reserved.</p><div style="display:flex;gap:16px;"><a href="#" target="_blank" rel="noopener" style="color:var(--text-muted);font-size:14px;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-facebook-f"></i></a><a href="#" target="_blank" rel="noopener" style="color:var(--text-muted);font-size:14px;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" rel="noopener" style="color:var(--text-muted);font-size:14px;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-youtube"></i></a></div></div>
+  </div>
+</footer>
+
+<div style="position:fixed;bottom:24px;right:24px;z-index:100;display:flex;flex-direction:column;align-items:flex-end;gap:12px;">
+  <div id="chat-window" style="display:none;width:320px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.15);overflow:hidden;flex-direction:column;">
+    <div style="padding:16px 20px;background:var(--brand-gradient);display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-robot" style="color:#fff;font-size:12px;"></i></div><div><p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:#fff;letter-spacing:.08em;">Sergio Giraldo AI</p><p style="font-size:10px;color:rgba(255,255,255,0.65);">AI Concierge</p></div></div><button onclick="toggleChat()" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:16px;"><i class="fa-solid fa-xmark"></i></button></div>
+    <div id="chat-msgs" style="padding:16px;min-height:200px;max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;"><div style="padding:12px 14px;border-radius:12px;background:#f9f8f5;border:1px solid rgba(0,0,0,0.08);font-size:12px;line-height:1.6;color:var(--text-base);max-width:88%;">Hi! I'm the Sergio Giraldo AI Concierge. Ask me anything about our properties or how to get in touch.</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;"><button onclick="quickReply(this)" style="padding:6px 12px;border-radius:20px;border:1px solid var(--brand);background:transparent;color:var(--brand);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='var(--brand)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--brand)'">What listings do you have?</button><button onclick="quickReply(this)" style="padding:6px 12px;border-radius:20px;border:1px solid var(--brand);background:transparent;color:var(--brand);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='var(--brand)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--brand)'">What's your contact info?</button><button onclick="quickReply(this)" style="padding:6px 12px;border-radius:20px;border:1px solid var(--brand);background:transparent;color:var(--brand);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='var(--brand)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--brand)'">How do I schedule a tour?</button></div></div>
+    <div style="padding:12px;border-top:1px solid rgba(0,0,0,0.08);display:flex;gap:8px;background:#fafaf8;"><input id="chat-input" type="text" placeholder="Ask about our listings..." style="flex:1;padding:10px 14px;border-radius:10px;border:1.5px solid #d1d5db;background:#ffffff;color:var(--text-heading);font-family:'Inter',sans-serif;font-size:12px;outline:none;"><button id="chat-send" onclick="sendChat()" style="width:36px;height:36px;border-radius:10px;background:var(--brand-gradient);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-paper-plane" style="font-size:12px;"></i></button></div>
+  </div>
+  <button onclick="toggleChat()" style="width:52px;height:52px;border-radius:50%;background:var(--brand-gradient);border:none;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;font-size:20px;"><i class="fa-solid fa-comment-dots"></i></button>
+</div>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');e.target.querySelectorAll('[data-target]').forEach(runCounter);obs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function runCounter(el){const target=parseFloat(el.getAttribute('data-target'));const steps=60;const inc=target/steps;let cur=0;const t=setInterval(()=>{cur+=inc;if(cur>=target){el.textContent=target%1===0?target.toFixed(0):target.toFixed(1);clearInterval(t);}else{el.textContent=cur%1===0?cur.toFixed(0):cur.toFixed(1);}},30);}
+function toggleMobileMenu(){const nav=document.getElementById('mobileNav');if(nav)nav.classList.toggle('show');}
+function filterProps(btn,filter){document.querySelectorAll('[data-filter]').forEach(b=>{b.style.background='transparent';b.style.color='var(--text-muted)';b.style.borderColor='';});btn.style.background='var(--brand-gradient)';btn.style.color='#fff';btn.style.borderColor='transparent';document.querySelectorAll('[data-cat]').forEach(c=>{c.style.display=(filter==='all'||c.getAttribute('data-cat')===filter)?'block':'none';});}
+const slides=document.querySelectorAll('.testimonial-slide');let cur=0,timer=setInterval(()=>goSlide((cur+1)%slides.length),7000);
+function goSlide(idx){clearInterval(timer);slides[cur].style.display='none';document.getElementById('t-dot-'+cur).style.width='8px';document.getElementById('t-dot-'+cur).style.background='rgba(0,0,0,0.08)';cur=idx;slides[cur].style.display='block';document.getElementById('t-dot-'+cur).style.width='24px';document.getElementById('t-dot-'+cur).style.background='var(--brand)';timer=setInterval(()=>goSlide((cur+1)%slides.length),7000);}
+function prevSlide(){goSlide(cur===0?slides.length-1:cur-1);}function nextSlide(){goSlide((cur+1)%slides.length);}
+let chatOpen=false,chatHistory=[];
+function toggleChat(){chatOpen=!chatOpen;const w=document.getElementById('chat-window');w.style.display=chatOpen?'flex':'none';if(chatOpen)w.style.flexDirection='column';}
+function addMsg(text,isUser){const d=document.getElementById('chat-msgs');const div=document.createElement('div');div.style.cssText='padding:12px 14px;border-radius:12px;font-size:12px;line-height:1.6;max-width:88%;'+(isUser?'margin-left:auto;text-align:right;':'');div.style.background=isUser?'rgba(26,107,60,0.08)':'#f9f8f5';div.style.border='1px solid rgba(0,0,0,0.08)';div.style.color='var(--text-base)';div.innerHTML=text;d.appendChild(div);d.scrollTop=d.scrollHeight;return div;}
+function showTyping(){const d=document.getElementById('chat-msgs');const div=document.createElement('div');div.id='typing';div.style.cssText='padding:12px 14px;border-radius:12px;background:#f9f8f5;border:1px solid rgba(0,0,0,0.08);display:flex;gap:4px;align-items:center;';div.innerHTML='<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';d.appendChild(div);d.scrollTop=d.scrollHeight;}
+async function sendChat(){const inp=document.getElementById('chat-input');const text=inp.value.trim();if(!text)return;inp.value='';addMsg(text,true);chatHistory.push({role:'user',content:text});showTyping();try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:'You are the AI concierge for Sergio Giraldo, a luxury real estate brokerage in Miami. Lead agent: Sergio Giraldo (Principal Broker). Phone: 123-456-7890. Email: info@youremail.com. Office: Your Address Here. Be friendly, professional, and concise.',messages:chatHistory})});const data=await res.json();document.getElementById('typing')?.remove();const reply=data.content?.map(b=>b.text||'').join('')||'Sorry, something went wrong.';addMsg(reply,false);chatHistory.push({role:'assistant',content:reply});}catch{document.getElementById('typing')?.remove();addMsg('Sorry, I could not connect. Call us at <a href="tel:1234567890" style="color:var(--brand);">123-456-7890</a>.',false);}}
+document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
+function quickReply(btn){const text=btn.textContent.trim();btn.parentElement.style.display='none';document.getElementById('chat-input').value=text;sendChat();}
+</script>
+</body>
+</html>
